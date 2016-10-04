@@ -84,6 +84,44 @@ void test_ollist_append_entry_and_sort_multiple() {
   expect_true("ollist_append 4", list->head->next->next->next == entry3);
 }
 
+void test_ollist_search_empty_list() {
+  OLList *list = ollist_new_list();
+
+  expect_true("ollist_search should return NULL if list is empty", ollist_search(list, 5) == NULL);
+}
+
+void test_ollist_search_not_found() {
+  OLList *list = ollist_new_list();
+
+  OLLEntry *entry1 = ollist_new_entry(3);
+
+  ollist_append(list, entry1);
+
+  expect_true("ollist_search should return NULL if not found", ollist_search(list, 5) == NULL);
+}
+
+void test_ollist_search_with_one_item() {
+  OLList *list = ollist_new_list();
+
+  OLLEntry *entry1 = ollist_new_entry(3);
+
+  ollist_append(list, entry1);
+
+  expect_true("ollist_search should return finded entry", ollist_search(list, entry1->value) == entry1);
+}
+
+void test_ollist_search_with_several_items() {
+  OLList *list = ollist_new_list();
+
+  OLLEntry *entry1 = ollist_new_entry(3);
+  OLLEntry *entry2 = ollist_new_entry(6);
+
+  ollist_append(list, entry1);
+  ollist_append(list, entry2);
+
+  expect_true("ollist_search should return finded entry2", ollist_search(list, entry2->value) == entry2);
+}
+
 int main(int argc, char *argv[])
 {
   test_ollist_new_list();
@@ -93,6 +131,10 @@ int main(int argc, char *argv[])
   test_ollist_append_entry_twice();
   test_ollist_append_entry_and_sort();
   test_ollist_append_entry_and_sort_multiple();
+  test_ollist_search_empty_list();
+  test_ollist_search_not_found();
+  test_ollist_search_with_one_item();
+  test_ollist_search_with_several_items();
 
   return tests_result_code();
 }

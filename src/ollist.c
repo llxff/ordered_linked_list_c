@@ -75,3 +75,17 @@ void _ollist_insert_entry(OLLEntry *prev, OLLEntry *next, OLLEntry *candidate) {
     }
   }
 }
+
+OLLEntry *ollist_search(OLList *list, int guess) {
+  OLLEntry *entry = list->head;
+
+  while(entry != NULL) {
+    if(entry->value == guess) {
+      return entry;
+    }
+
+    entry = entry->next;
+  }
+
+  return NULL;
+}

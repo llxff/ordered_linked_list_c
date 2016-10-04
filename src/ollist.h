@@ -28,4 +28,6 @@ OLLEntry *_ollist_calculate_head_and_append(OLLEntry *current_head, OLLEntry *ca
 
 void _ollist_insert_entry(OLLEntry *prev, OLLEntry *next, OLLEntry *candidate);
 
+OLLEntry *ollist_search(OLList *list, int guess);
+
 #endif
