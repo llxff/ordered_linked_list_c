@@ -23,21 +23,35 @@ OLLEntry *ollist_new_entry(int value)
 
 void ollist_append(OLList *list, OLLEntry *entry) {
   list->length++;
+  list->head = _ollist_calculate_head_and_append(list->head, entry);
+}
 
-  if(list->head == NULL) {
-    list->head = entry;
+OLLEntry *_ollist_calculate_head_and_append(OLLEntry *current_head, OLLEntry *candidate) {
+  if (current_head == NULL) {
+    return candidate;
+  }
+
+  if(current_head->value >= candidate->value) {
+    candidate->next = current_head;
+    return candidate;
+  }
+
+  _ollist_insert_entry(current_head, current_head->next, candidate);
+
+  return current_head;
+}
+
+void _ollist_insert_entry(OLLEntry *prev, OLLEntry *next, OLLEntry *candidate) {
+  if(next == NULL) {
+    prev->next = candidate;
   }
   else {
-    OLLEntry *next = list->head;
-
-    while(next != NULL) {
-      if(next->next == NULL) {
-        next->next = entry;
-        next = entry->next;
-      }
-      else {
-        next = next->next;
-      }
+    if(next->value >= candidate->value) {
+      prev->next = candidate;
+      candidate->next = next;
+    }
+    else {
+      _ollist_insert_entry(next, next->next, candidate);
     }
   }
 }
