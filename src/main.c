@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
   printf("\n");
 
   while(1) {
-    char *command;
+    char *command[1];
     int value;
 
     printf("\033[1;33m> ");
