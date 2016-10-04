@@ -35,11 +35,12 @@ void remove_command(OLList *list, int guess) {
     ollist_remove(list, entry);
     print(guess, "was removed");
     ollist_inspect(list);
-    printf("\n");
   }
   else {
     print(guess, "was not found in list");
   }
+
+  printf("\n");
 }
 
 int main(int argc, char *argv[])
