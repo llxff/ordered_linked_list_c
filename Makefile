@@ -1,6 +1,9 @@
-run:
+build:
 	mkdir -p bin
 	gcc src/main.c src/ollist.c -o bin/main
+
+run:
+	make build
 	bin/main
 
 tests:
