@@ -4,8 +4,16 @@
 
 int main(int argc, char *argv[])
 {
-  OLLEntry *list = ollist_new_entry(80);
+  OLList *list = ollist_new_list();
 
-  printf("%d\n", list->value);
+  ollist_append(list, ollist_new_entry(4));
+  ollist_append(list, ollist_new_entry(2));
+  ollist_append(list, ollist_new_entry(5));
+  ollist_append(list, ollist_new_entry(6));
+  ollist_append(list, ollist_new_entry(1));
+  ollist_append(list, ollist_new_entry(3));
+
+  ollist_inspect(list);
+
   return 0;
 }

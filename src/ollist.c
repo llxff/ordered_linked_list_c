@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "ollist.h"
 
@@ -19,6 +20,25 @@ OLLEntry *ollist_new_entry(int value)
   new_entry->value = value;
 
   return new_entry;
+}
+
+void ollist_inspect(OLList *list) {
+  printf("List length is: %d\n", list->length);
+
+  OLLEntry *entry = list->head;
+
+  printf("[");
+
+  while(entry != NULL) {
+    printf("%d", entry->value);
+    entry = entry->next;
+
+    if(entry != NULL) {
+      printf(",");
+    }
+  }
+
+  printf("]\n");
 }
 
 void ollist_append(OLList *list, OLLEntry *entry) {

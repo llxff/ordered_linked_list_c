@@ -20,6 +20,8 @@ OLList *ollist_new_list();
 
 OLLEntry *ollist_new_entry(int value);
 
+void ollist_inspect(OLList *list);
+
 void ollist_append(OLList *head, OLLEntry *entry);
 
 OLLEntry *_ollist_calculate_head_and_append(OLLEntry *current_head, OLLEntry *candidate);
