@@ -89,3 +89,34 @@ OLLEntry *ollist_search(OLList *list, int guess) {
 
   return NULL;
 }
+
+void ollist_remove(OLList *list, OLLEntry *guess) {
+  OLLEntry *entry = list->head;
+
+  if(list->head == NULL) {
+    return;
+  }
+
+  if(list->head == guess) {
+    list->length--;
+    list->head = guess->next;
+    entry->next = NULL;
+
+    return ;
+  }
+
+  OLLEntry *next = entry->next;
+
+  while(next != NULL) {
+    if(next == guess) {
+      entry->next = guess->next;
+      list->length--;
+      guess->next = NULL;
+      next = NULL;
+    }
+    else {
+      entry = next;
+      next = next->next;
+    }
+  }
+}

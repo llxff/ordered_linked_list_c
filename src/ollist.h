@@ -30,4 +30,6 @@ void _ollist_insert_entry(OLLEntry *prev, OLLEntry *next, OLLEntry *candidate);
 
 OLLEntry *ollist_search(OLList *list, int guess);
 
+void ollist_remove(OLList *list, OLLEntry *entry);
+
 #endif
