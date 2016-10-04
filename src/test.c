@@ -222,6 +222,49 @@ void test_ollist_remove_when_not_found() {
   expect_true("ollist_remove list should not change entry4 next", entry4->next == NULL);
 }
 
+void test_ollist_remove_null() {
+  OLList *list = ollist_new_list();
+
+  OLLEntry *entry1 = ollist_new_entry(3);
+  OLLEntry *entry2 = ollist_new_entry(4);
+
+  ollist_append(list, entry1);
+  ollist_append(list, entry2);
+
+  ollist_remove(list, NULL);
+
+  expect_true("ollist_remove should not change length", list->length == 2);
+  expect_true("ollist_remove should not change head", list->head == entry1);
+  expect_true("ollist_remove list should not change entry1 next", entry1->next == entry2);
+}
+
+void test_ollist_shift_if_empty() {
+  OLList *list = ollist_new_list();
+
+  ollist_shift(list);
+
+  expect_true("ollist_shift should not change length", list->length == 0);
+}
+
+void test_ollist_shift_list() {
+  OLList *list = ollist_new_list();
+
+  OLLEntry *entry1 = ollist_new_entry(3);
+  OLLEntry *entry2 = ollist_new_entry(4);
+  OLLEntry *entry3 = ollist_new_entry(5);
+
+  ollist_append(list, entry1);
+  ollist_append(list, entry2);
+  ollist_append(list, entry3);
+
+  ollist_shift(list);
+
+  expect_true("ollist_remove should change head to entry2", list->head == entry2);
+  expect_true("ollist_remove should set length as 2", list->length == 2);
+  expect_true("ollist_remove should detach entry1 from entry2", entry1->next == NULL);
+  expect_true("ollist_remove should not change list items", entry2->next == entry3);
+}
+
 int main(int argc, char *argv[])
 {
   test_ollist_new_list();
@@ -241,6 +284,9 @@ int main(int argc, char *argv[])
   test_ollist_remove_from_middle();
   test_ollist_remove_from_beginning();
   test_ollist_remove_when_not_found();
+  test_ollist_remove_null();
+  test_ollist_shift_if_empty();
+  test_ollist_shift_list();
 
   return tests_result_code();
 }

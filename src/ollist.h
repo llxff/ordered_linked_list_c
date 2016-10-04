@@ -32,4 +32,6 @@ OLLEntry *ollist_search(OLList *list, int guess);
 
 void ollist_remove(OLList *list, OLLEntry *entry);
 
+OLLEntry *ollist_shift(OLList *list);
+
 #endif
