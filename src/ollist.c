@@ -12,8 +12,7 @@ OLList *ollist_new_list() {
   return new_list;
 }
 
-OLLEntry *ollist_new_entry(int value)
-{
+OLLEntry *ollist_new_entry(int value) {
   OLLEntry *new_entry = malloc(sizeof(OLLEntry));
 
   new_entry->next = NULL;
