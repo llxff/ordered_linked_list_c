@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "ollist.h"
 
-#define SEARCH_COMMAND "s"
-#define REMOVE_COMMAND "r"
-#define ADD_COMMAND "a"
+const char *SEARCH_COMMAND = "s";
+const char *REMOVE_COMMAND = "r";
+const char *ADD_COMMAND = "a";
 
 void print(int value, char *string) {
   printf("\033[0;33m%d %s\033[0m\n", value, string);
@@ -64,13 +65,13 @@ int main(int argc, char *argv[])
 
     printf("\033[0m");
 
-    if(*command == *ADD_COMMAND) {
+    if(strcmp(command, ADD_COMMAND) == 0) {
       add_command(list, value);
     }
-    else if(*command == *SEARCH_COMMAND) {
+    else if(strcmp(command, SEARCH_COMMAND) == 0) {
       search_command(list, value);
     }
-    else if(*command == *REMOVE_COMMAND) {
+    else if(strcmp(command, REMOVE_COMMAND) == 0) {
       remove_command(list, value);
     }
     else {
