@@ -34,6 +34,7 @@ void remove_command(OLList *list, int guess) {
 
   if(entry) {
     ollist_remove(list, entry);
+    free(entry);
     print(guess, "was removed");
     ollist_inspect(list);
   }
